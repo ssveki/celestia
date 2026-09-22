@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Benzin";
+  src: url("/fonts/Benzin-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --color-black: #000000;
+  --color-blue: #3805F2;
+  --color-dark-gray: #16181d;
+  --color-gray: #8a8f99;
+  --color-gray-30: #4a4f57;
+  --color-white: #ffffff;
+  --color-white-40: rgba(255, 255, 255, 0.4);
+
+  --font-desktop-h2: "Benzin", sans-serif;
+  --font-desktop-h3: "Benzin", sans-serif;
+  --font-desktop-text: "Gilroy", sans-serif;
+  --font-desktop-button: "Benzin", sans-serif;
+  --font-desktop-caption: "Gilroy", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #16181d;
+  color: #fff;
+}
