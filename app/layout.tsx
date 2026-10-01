@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Celestia — Планетарий",
+  title: "Celestia | Планетарий",
   description: "Запись на экскурсию в планетарий Celestia",
 };
 

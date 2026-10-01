@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* ─────────────── Шрифты ─────────────── */
 @font-face {
   font-family: "Benzin";
   src: url("/fonts/Benzin-Bold.ttf") format("truetype");
@@ -14,24 +15,146 @@
   font-display: swap;
 }
 
-@theme {
-  --color-black: #000000;
-  --color-blue: #3805F2;
-  --color-dark-gray: #16181d;
-  --color-gray: #8a8f99;
-  --color-gray-30: #4a4f57;
-  --color-white: #ffffff;
-  --color-white-40: rgba(255, 255, 255, 0.4);
-
-  --font-desktop-h2: "Benzin", sans-serif;
-  --font-desktop-h3: "Benzin", sans-serif;
-  --font-desktop-text: "Gilroy", sans-serif;
-  --font-desktop-button: "Benzin", sans-serif;
-  --font-desktop-caption: "Gilroy", sans-serif;
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
 }
 
+/* ─────────────── Токены цветов и шрифтов ─────────────── */
+@theme {
+  --color-white: #ffffff;
+  --color-white-40: rgba(255, 255, 255, 0.4);
+  --color-white-30: rgba(255, 255, 255, 0.3);
+
+  --color-blue: #3805f2;
+  --color-blue-50: rgba(56, 5, 242, 0.5);
+
+  --color-dark-gray: #131313;
+
+  --color-black: #000000;
+  --color-black-40: rgba(0, 0, 0, 0.4);
+  --color-black-10: rgba(0, 0, 0, 0.1);
+
+  --color-gray: #1e1e1e;
+  --color-gray-30: #272424;
+
+  --font-benzin: "Benzin", sans-serif;
+  --font-gilroy: "Gilroy", sans-serif;
+}
+
+@theme {
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1920px;
+}
+
+/* ─────────────── База ─────────────── */
 body {
   margin: 0;
-  background: #16181d;
-  color: #fff;
+  background: #131313;
+  color: #ffffff;
+}
+
+/* ─────────────── Типографика ─────────────── */
+@layer components {
+
+  /* h1 — Benzin Bold */
+  .type-h1 {
+    font-family: "Benzin", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.1;
+  }
+  @media (min-width: 768px) {
+    .type-h1 { font-size: 32px; line-height: 1.0; }
+  }
+  @media (min-width: 1280px) {
+    .type-h1 { font-size: 64px; line-height: 0.95; }
+  }
+
+  /* h2 — Benzin Bold */
+  .type-h2 {
+    font-family: "Benzin", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.1;
+  }
+  @media (min-width: 768px) {
+    .type-h2 { font-size: 26px; line-height: 1.0; }
+  }
+  @media (min-width: 1280px) {
+    .type-h2 { font-size: 56px; line-height: 0.95; }
+  }
+
+  /* h3 — Benzin Bold */
+  .type-h3 {
+    font-family: "Benzin", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.1;
+  }
+  @media (min-width: 768px) {
+    .type-h3 { font-size: 16px; line-height: 1.2; }
+  }
+  @media (min-width: 1280px) {
+    .type-h3 { font-size: 20px; line-height: 1.4; }
+  }
+
+  /* text — Gilroy */
+  .type-text {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  @media (min-width: 768px) {
+    .type-text { font-weight: 500; font-size: 14px; line-height: 1.4; }
+  }
+  @media (min-width: 1280px) {
+    .type-text { font-size: 16px; line-height: 1.4; }
+  }
+
+  /* text-2 — Gilroy Regular */
+  .type-text-2 {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .type-text-2 { font-size: 18px; line-height: 1.2; }
+  }
+  @media (min-width: 1280px) {
+    .type-text-2 { font-size: 22px; line-height: 1.2; }
+  }
+
+  /* caption — Gilroy */
+  .type-caption {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .type-caption { font-weight: 400; font-size: 10px; line-height: 1.4; }
+  }
+  @media (min-width: 1280px) {
+    .type-caption { font-weight: 500; font-size: 12px; line-height: 1.4; }
+  }
+
+  /* button — Benzin Bold */
+  .type-button {
+    font-family: "Benzin", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .type-button { font-size: 12px; line-height: 0.9; }
+  }
+  @media (min-width: 1280px) {
+    .type-button { font-size: 16px; line-height: 1.0; }
+  }
 }

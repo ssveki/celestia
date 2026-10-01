@@ -1,38 +1,42 @@
+// components/MainSection/MainSection.tsx
+import Image from "next/image";
+
 export default function MainSection() {
   return (
-    <section className="w-full bg-[#131313] px-3 pb-6 pt-2 md:px-6">
-      <div className="mx-auto flex w-full max-w-[290px] flex-col gap-3 md:max-w-[740px] md:gap-4 xl:max-w-[1340px]">
+    <section className="w-full bg-dark-gray px-[15px] pb-6 pt-2 lg:px-[142px] xl:px-[290px]">
+      <div className="mx-auto flex w-full max-w-[1340px] flex-col gap-3 md:gap-4">
 
-        {/* ── Баннер ── */}
-        <div className="relative overflow-hidden rounded-[32px] bg-white p-6 md:rounded-[40px] md:p-8 xl:h-[493px] xl:rounded-[55px] xl:px-[40px] xl:pb-[125px] xl:pt-[40px]">
-          <img
+        <div className="group relative overflow-hidden rounded-[20px] bg-white p-5 md:p-6 xl:h-[493px] xl:rounded-[55px] xl:px-[40px] xl:pb-[125px] xl:pt-[40px]">
+          <Image
             src="/images/main-banner.png"
             alt=""
-            className="pointer-events-none absolute right-0 top-0 hidden h-full w-auto select-none object-contain object-right md:block"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1920px) 740px, 1340px"
+            className="pointer-events-none !left-auto right-0 top-0 hidden !w-auto select-none object-contain object-right md:block"
+            priority
           />
 
           <div className="relative z-10 flex h-full flex-col">
-            <h1 className="font-desktop-h2 text-2xl leading-[1.05] text-black md:text-4xl xl:text-[64px]">
+            <h1 className="font-benzin text-[26px] leading-[1.05] text-black md:text-[40px] xl:text-[64px]">
               Раскройте тайны звезд
               <br />
               с помощью <span className="text-blue">Celestia</span>
             </h1>
 
-            <p className="mt-4 max-w-[520px] font-desktop-text text-xs leading-relaxed text-black/70 md:mt-5 md:text-sm xl:mt-6 xl:text-base">
+            <p className="mt-4 max-w-[520px] font-gilroy text-xs leading-[1.4] text-black/70 md:text-sm xl:mt-6 xl:text-base">
               Мы проводим специальные мероприятия, такие как ночи
               наблюдения за звездами, лекции и многое другое
             </p>
 
             <a
               href="#forms"
-              className="mt-6 inline-flex w-fit items-center justify-center rounded-[55px] bg-blue px-6 py-3 font-desktop-button text-xs text-white transition hover:opacity-90 md:px-7 md:py-3.5 md:text-sm xl:mt-[74px] xl:px-8 xl:py-4 xl:text-base"
+              className="mt-6 inline-flex w-fit cursor-pointer items-center justify-center rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-white transition-all duration-300 hover:bg-transparent hover:text-blue hover:ring-2 hover:ring-inset hover:ring-blue active:bg-white active:text-black active:ring-0 active:shadow-[0_4px_11px_0_rgba(50,78,234,0.8)] md:px-6 md:py-3 md:text-sm xl:mt-[74px] xl:px-8 xl:py-4 xl:text-base"
             >
               Подробнее
             </a>
           </div>
         </div>
 
-        {/* ── md+ : двухколоночный блок ── */}
         <div className="hidden md:grid md:grid-cols-[427fr_899fr] md:gap-4">
           <div className="flex flex-col gap-4">
             <CouplesCard />
@@ -41,7 +45,6 @@ export default function MainSection() {
           <OnlineWalkCard />
         </div>
 
-        {/* ── <md : стопка ── */}
         <div className="flex flex-col gap-3 md:hidden">
           <DiscountCard />
           <CouplesCard />
@@ -53,18 +56,16 @@ export default function MainSection() {
   );
 }
 
-/* ────────────────── Подкомпоненты ────────────────── */
-
 function CouplesCard() {
   return (
-    <div className="flex min-h-[140px] flex-col justify-between rounded-[32px] bg-white p-6 md:min-h-[210px] md:rounded-[40px] md:p-8 xl:rounded-[55px]">
+    <div className="group relative flex min-h-[130px] flex-col rounded-[20px] bg-white p-5 md:min-h-[200px] md:p-6 xl:h-[282px] xl:min-h-0 xl:rounded-[55px] xl:p-10">
       <div>
-        <h3 className="font-desktop-h2 text-xl leading-[1.05] text-black md:text-3xl">
+        <h3 className="font-benzin text-[20px] leading-[1.05] text-black md:text-[28px] xl:text-[40px]">
           для
           <br />
           парочек
         </h3>
-        <p className="mt-2 font-desktop-text text-xs text-black/70 md:mt-3 md:text-sm">
+        <p className="mt-3 font-gilroy text-xs leading-[1.4] text-black/70 md:text-sm xl:text-base">
           ночи наблюдения
           <br />
           за звездами
@@ -73,9 +74,15 @@ function CouplesCard() {
       <button
         type="button"
         aria-label="Подробнее"
-        className="mt-4 inline-flex h-10 w-10 items-center justify-center self-end rounded-full bg-blue transition hover:opacity-90 md:h-12 md:w-12"
+        className="absolute bottom-5 right-5 inline-flex h-[30px] w-[30px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-blue md:h-[36px] md:w-[36px] xl:bottom-10 xl:right-10 xl:h-[58px] xl:w-[58px]"
       >
-        <img src="/icons/arrow-white.svg" alt="" className="h-4 w-4 md:h-5 md:w-5" />
+        <Image
+          src="/icons/arrow-white.svg"
+          alt=""
+          width={20}
+          height={20}
+          className="h-3 w-3 rotate-0 transition-transform duration-300 group-hover:-rotate-90 md:h-4 md:w-4 xl:h-5 xl:w-5"
+        />
       </button>
     </div>
   );
@@ -83,19 +90,27 @@ function CouplesCard() {
 
 function DiscountCard() {
   return (
-    <div className="flex min-h-[110px] flex-col justify-between rounded-[32px] bg-blue p-6 md:min-h-[140px] md:rounded-[40px] md:p-8 xl:rounded-[55px]">
+    <div className="group relative flex min-h-[110px] flex-col rounded-[20px] bg-blue p-5 md:min-h-[140px] md:p-6 xl:h-[189px] xl:min-h-0 xl:rounded-[55px] xl:p-10">
       <div>
-        <span className="font-desktop-h2 text-2xl text-white md:text-3xl">20%</span>
-        <p className="mt-2 font-desktop-text text-xs text-white md:mt-2 md:text-sm">
+        <span className="font-benzin text-[20px] leading-none text-white md:text-[28px] xl:text-[40px]">
+          20%
+        </span>
+        <p className="mt-2 font-gilroy text-xs leading-[1.4] text-white md:text-sm xl:text-base">
           скидка пенсионерам
         </p>
       </div>
       <button
         type="button"
         aria-label="Подробнее"
-        className="mt-4 inline-flex h-10 w-10 items-center justify-center self-end rounded-full bg-white transition hover:opacity-90 md:h-12 md:w-12"
+        className="absolute bottom-5 right-5 inline-flex h-[30px] w-[30px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-white md:h-[36px] md:w-[36px] xl:bottom-10 xl:right-10 xl:h-[58px] xl:w-[58px]"
       >
-        <img src="/icons/arrow-black.svg" alt="" className="h-4 w-4 md:h-5 md:w-5" />
+        <Image
+          src="/icons/arrow-black.svg"
+          alt=""
+          width={20}
+          height={20}
+          className="h-3 w-3 rotate-0 transition-transform duration-300 group-hover:-rotate-90 md:h-4 md:w-4 xl:h-5 xl:w-5"
+        />
       </button>
     </div>
   );
@@ -103,28 +118,41 @@ function DiscountCard() {
 
 function OnlineWalkCard() {
   return (
-    <div
-      className="relative flex flex-col items-center justify-center gap-10 overflow-hidden rounded-[40px] bg-black bg-cover bg-center px-6 py-[77.5px] md:px-8 lg:py-[26px] xl:rounded-[55px] xl:py-[77.5px]"
-      style={{
-        backgroundImage: "url(/images/main-background.png)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="flex items-center gap-4">
-        <img
+    <div className="group relative flex flex-col items-center justify-center gap-10 overflow-hidden rounded-[20px] bg-black p-5 md:gap-12 md:p-8 xl:gap-10 xl:rounded-[55px] xl:py-[77.5px]">
+      <Image
+        src="/images/main-background.png"
+        alt=""
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1920px) 740px, 899px"
+        className="object-cover object-center"
+      />
+
+      <div className="relative z-10 flex items-center gap-4">
+        <Image
           src="/icons/logo.svg"
           alt=""
-          className="h-[40px] w-auto object-contain md:h-[56px] xl:h-[70px]"
+          width={56}
+          height={56}
+          className="h-[40px] w-[40px] object-contain md:h-[48px] md:w-[48px] xl:h-[56px] xl:w-[56px]"
         />
-        <h3 className="font-desktop-h2 text-2xl leading-tight text-white md:text-3xl lg:text-[16px] xl:text-[32px]">
+        <h3 className="font-benzin text-lg leading-tight text-white md:text-2xl xl:text-[32px]">
           ОНЛАЙН-<br />ПРОГУЛКА
         </h3>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-5">
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-5">
         <StatCircle value=">50" label="залов" />
-        <StatCircle value=">100" label={<>программ про<br/>Вселенную</>} accent />
+        <StatCircle
+          value=">100"
+          label={
+            <>
+              программ про
+              <br />
+              Вселенную
+            </>
+          }
+          accent
+        />
         <StatCircle value=">20" label="телескопов" />
       </div>
     </div>
@@ -144,15 +172,15 @@ function StatCircle({
     <div
       className={`flex flex-col items-center justify-center rounded-full text-center ${
         accent
-          ? "h-[130px] w-[130px] bg-blue text-white md:h-[160px] md:w-[160px] xl:h-[180px] xl:w-[180px]"
-          : "h-[100px] w-[100px] bg-white text-black md:h-[130px] md:w-[130px] xl:h-[150px] xl:w-[150px]"
+          ? "h-[110px] w-[110px] bg-blue text-white md:h-[150px] md:w-[150px] xl:h-[220px] xl:w-[220px]"
+          : "h-[90px] w-[90px] bg-white text-black md:h-[120px] md:w-[120px] xl:h-[150px] xl:w-[150px]"
       }`}
     >
-      <span className="font-desktop-h2 text-[24px] leading-none lg:text-[16px] xl:text-[24px]">
+      <span className="font-benzin text-sm leading-none md:text-lg xl:text-[24px]">
         {value}
       </span>
       <span
-        className={`mt-1 px-2 font-desktop-text text-[16px] leading-tight lg:text-[14px] xl:text-[16px] ${
+        className={`mt-1 px-2 font-gilroy text-xs leading-tight md:text-sm xl:text-base ${
           accent ? "text-white/90" : "text-black/70"
         }`}
       >
@@ -166,22 +194,16 @@ function StatsRowMobile() {
   return (
     <div className="flex items-center justify-around pt-4">
       <div className="flex flex-col items-center">
-        <span className="font-desktop-h2 text-base text-white">&gt;20</span>
-        <span className="font-desktop-text text-[10px] text-white/60">
-          телескопов
-        </span>
+        <span className="font-benzin text-base text-white">&gt;20</span>
+        <span className="font-gilroy text-[10px] text-white/60">телескопов</span>
       </div>
       <div className="flex flex-col items-center">
-        <span className="font-desktop-h2 text-base text-white">&gt;100</span>
-        <span className="font-desktop-text text-[10px] text-white/60">
-          программ
-        </span>
+        <span className="font-benzin text-base text-white">&gt;100</span>
+        <span className="font-gilroy text-[10px] text-white/60">программ</span>
       </div>
       <div className="flex flex-col items-center">
-        <span className="font-desktop-h2 text-base text-white">&gt;50</span>
-        <span className="font-desktop-text text-[10px] text-white/60">
-          залов
-        </span>
+        <span className="font-benzin text-base text-white">&gt;50</span>
+        <span className="font-gilroy text-[10px] text-white/60">залов</span>
       </div>
     </div>
   );
