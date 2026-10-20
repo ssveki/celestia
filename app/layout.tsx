@@ -1,22 +1,24 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Celestia | Планетарий",
-  description: "Запись на экскурсию в планетарий Celestia",
+  title: "Celestia — Планетарий",
+  description: "Запись на экскурсию в планетарий",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body className="bg-dark-gray text-white">
+      <body className="flex min-h-screen flex-col bg-dark-gray text-white">
         <Header />
-        <main>{children}</main>
+        {/* Основной контент страницы */}
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );
