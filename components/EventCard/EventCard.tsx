@@ -1,4 +1,3 @@
-// components/EventCard/EventCard.tsx
 import Image from "next/image";
 import Link from "next/link";
 import { EventItem } from "@/lib/data";
@@ -7,7 +6,7 @@ export default function EventCard({ event }: { event: EventItem }) {
   return (
     <article className="group rounded-[28px] p-5 transition-colors duration-500 hover:bg-blue lg:rounded-[40px] xl:rounded-[55px] xl:p-6">
 
-      {/* ─── 1920px (xl) — 3 колонки ─── */}
+      {/* 1440px+ (xl) */}
       <div className="hidden xl:grid xl:grid-cols-[313px_minmax(90px,auto)_minmax(650px,1fr)] xl:gap-x-6">
         <div className="relative self-start">
           <Image
@@ -43,9 +42,13 @@ export default function EventCard({ event }: { event: EventItem }) {
               <Price icon="/icons/child.svg" value={event.priceChild} />
             </div>
             <div className="flex items-center gap-[10px]">
-              <button className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 hover:border-white hover:text-white">
+              <Link 
+                href={`/events/${event.slug}`} 
+                className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors hover:border-white hover:text-white"
+              >
                 Выбрать дату
-              </button>
+                <Image src="/icons/btn-left-black.svg" alt="" width={12} height={12} className="h-3 w-3 -rotate-90 opacity-70 invert" />
+              </Link>
               <Link href={`/events/${event.slug}`} className="inline-flex h-[40px] items-center justify-center rounded-full bg-blue px-4 font-benzin text-xs text-white transition-colors hover:bg-white hover:text-black">
                 Подробнее
               </Link>
@@ -54,16 +57,16 @@ export default function EventCard({ event }: { event: EventItem }) {
         </div>
       </div>
 
-      {/* ─── 768px–1919px (md-lg) — планшет/ноутбук ─── */}
+      {/* 768px–1439px (md-lg) */}
       <div className="hidden md:block xl:hidden">
-        <div className="flex items-start gap-20">
+        <div className="flex items-start gap-10 lg:gap-20">
           <div className="relative shrink-0">
             <Image
               src={event.img}
               alt={event.title}
               width={313}
               height={159}
-              className="h-[159px] w-[313px] rounded-[55px] object-cover"
+              className="h-[159px] w-[313px] rounded-[40px] object-cover lg:rounded-[55px]"
             />
             <span className="absolute -right-2 -top-2 z-10 inline-flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white font-gilroy text-[12px] text-black">
               {event.age}
@@ -91,9 +94,13 @@ export default function EventCard({ event }: { event: EventItem }) {
               <Price icon="/icons/child.svg" value={event.priceChild} />
             </div>
             <div className="flex items-center gap-[10px]">
-              <button className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 hover:border-white hover:text-white">
+              <Link 
+                href={`/events/${event.slug}`} 
+                className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors hover:border-white hover:text-white"
+              >
                 Выбрать дату
-              </button>
+                <Image src="/icons/btn-left-black.svg" alt="" width={12} height={12} className="h-3 w-3 -rotate-90 opacity-70 invert" />
+              </Link>
               <Link href={`/events/${event.slug}`} className="inline-flex h-[40px] items-center justify-center rounded-full bg-blue px-4 font-benzin text-xs text-white transition-colors hover:bg-white hover:text-black">
                 Подробнее
               </Link>
@@ -102,7 +109,7 @@ export default function EventCard({ event }: { event: EventItem }) {
         </div>
       </div>
 
-      {/* ─── до 768px (base) — мобилка ─── */}
+      {/* до 768px (base) */}
       <div className="flex flex-col gap-5 md:hidden">
         <div className="relative w-full">
           <Image
@@ -110,7 +117,7 @@ export default function EventCard({ event }: { event: EventItem }) {
             alt={event.title}
             width={313}
             height={159}
-            className="h-[159px] w-full rounded-[55px] object-cover"
+            className="h-[159px] w-full rounded-[24px] object-cover"
           />
           <span className="absolute -right-2 -top-2 z-10 inline-flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white font-gilroy text-[12px] text-black">
             {event.age}
@@ -138,9 +145,13 @@ export default function EventCard({ event }: { event: EventItem }) {
         </div>
 
         <div className="flex items-center gap-[10px]">
-          <button className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 hover:border-white hover:text-white">
+          <Link 
+            href={`/events/${event.slug}`} 
+            className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors hover:border-white hover:text-white"
+          >
             Выбрать дату
-          </button>
+            <Image src="/icons/btn-left-black.svg" alt="" width={12} height={12} className="h-3 w-3 -rotate-90 opacity-70 invert" />
+          </Link>
           <Link href={`/events/${event.slug}`} className="inline-flex h-[40px] items-center justify-center rounded-full bg-blue px-4 font-benzin text-xs text-white transition-colors hover:bg-white hover:text-black">
             Подробнее
           </Link>

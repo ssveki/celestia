@@ -1,8 +1,8 @@
-// components/Header/Header.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const nav = [
   { label: "Главная", href: "/" },
@@ -17,10 +17,10 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full bg-dark-gray px-[15px] lg:px-[142px] xl:px-[290px]">
+    <header className="w-full bg-dark-gray px-[15px] md:px-[30px] xl:px-[50px]">
       <div className="mx-auto flex h-[60px] w-full max-w-[1340px] items-center justify-between md:h-[80px] xl:h-[100px]">
-
-        <a href="/" aria-label="Celestia" className="flex items-center gap-2 transition-opacity duration-300 hover:opacity-80">
+        
+        <Link href="/" aria-label="Celestia" className="flex items-center gap-2 transition-opacity duration-300 hover:opacity-80">
           <Image
             src="/icons/logo.svg"
             alt="Celestia"
@@ -31,55 +31,55 @@ export default function Header() {
           <span className="font-benzin text-base text-white md:text-xl xl:text-[28px]">
             Celestia
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 xl:flex">
           {nav.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
               className="font-gilroy text-sm text-white/80 transition-colors duration-300 hover:text-white xl:text-base"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-
           <div className="hidden items-center gap-6 xl:flex xl:gap-[30px]">
             <a href="#" className="flex items-center gap-3">
-              <Image src="/icons/whatsapp.svg" alt="" width={24} height={24} className="h-5 w-5 xl:h-6 xl:w-6" />
-              <Image src="/icons/tg.svg" alt="" width={24} height={24} className="h-5 w-5 xl:h-6 xl:w-6" />
+              <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={24} height={24} className="h-5 w-5 xl:h-6 xl:w-6" />
+              <Image src="/icons/tg.svg" alt="Telegram" width={24} height={24} className="h-5 w-5 xl:h-6 xl:w-6" />
             </a>
-            <span className="font-gilroy text-sm font-semibold text-white xl:text-base">
+            <a href="tel:+78123363636" className="font-gilroy text-sm font-semibold text-white xl:text-base">
               (812) 336 36 36
-            </span>
-            <a
+            </a>
+            {/* На ПК кнопка синяя с черным текстом */}
+            <Link
               href="#forms"
-              className="cursor-pointer rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-white transition-all duration-300 hover:bg-white hover:text-black active:ring-2 active:ring-white active:ring-offset-2 active:ring-offset-dark-gray xl:px-6 xl:py-3 xl:text-sm"
+              className="cursor-pointer rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-black transition-all duration-300 hover:bg-white hover:text-black active:ring-2 active:ring-white active:ring-offset-2 active:ring-offset-dark-gray xl:px-6 xl:py-3 xl:text-sm"
             >
               Купить билет
-            </a>
+            </Link>
           </div>
 
           <div className="hidden items-center gap-3 md:flex xl:hidden">
-            <Image src="/icons/whatsapp.svg" alt="" width={20} height={20} className="h-5 w-5" />
-            <Image src="/icons/tg.svg" alt="" width={20} height={20} className="h-5 w-5" />
+            <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={20} height={20} className="h-5 w-5" />
+            <Image src="/icons/tg.svg" alt="Telegram" width={20} height={20} className="h-5 w-5" />
             <a href="tel:+78123363636" className="font-gilroy text-sm font-semibold text-white">
               (812) 336 36 36
             </a>
-            <a
+            <Link
               href="#forms"
               className="cursor-pointer rounded-full bg-white px-4 py-2 font-benzin text-xs text-black transition-all duration-300 hover:bg-blue hover:text-white active:ring-2 active:ring-white active:ring-offset-2 active:ring-offset-dark-gray"
             >
               Купить билет
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
-            <Image src="/icons/whatsapp.svg" alt="" width={20} height={20} className="h-5 w-5" />
-            <Image src="/icons/tg.svg" alt="" width={20} height={20} className="h-5 w-5" />
+            <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={20} height={20} className="h-5 w-5" />
+            <Image src="/icons/tg.svg" alt="Telegram" width={20} height={20} className="h-5 w-5" />
           </div>
 
           <button
@@ -89,7 +89,7 @@ export default function Header() {
           >
             <Image
               src="/icons/burger.svg"
-              alt=""
+              alt="Меню"
               width={20}
               height={20}
               className="h-4 w-4 md:h-5 md:w-5"
@@ -101,24 +101,24 @@ export default function Header() {
       {open && (
         <nav className="mx-auto flex w-full max-w-[1340px] flex-col gap-4 py-6 xl:hidden">
           {nav.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
               className="font-gilroy text-sm text-white transition-colors duration-300 hover:text-blue"
               onClick={() => setOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <a href="tel:+78123363636" className="font-gilroy text-sm font-semibold text-white transition-colors duration-300 hover:text-blue">
             (812) 336 36 36
           </a>
-          <a
+          <Link
             href="#forms"
             className="cursor-pointer rounded-full bg-blue px-5 py-3 text-center font-benzin text-xs text-white transition-all duration-300 hover:bg-white hover:text-black active:ring-2 active:ring-white active:ring-offset-2 active:ring-offset-dark-gray"
           >
             Купить билет
-          </a>
+          </Link>
         </nav>
       )}
     </header>

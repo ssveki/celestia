@@ -44,10 +44,11 @@
   --font-gilroy: "Gilroy", sans-serif;
 }
 
+/* ─────────────── Брейкпоинты ─────────────── */
 @theme {
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1920px;
+  --breakpoint-md: 768px;  /* Планшет */
+  --breakpoint-lg: 1024px; /* Промежуточный (ноутбук) */
+  --breakpoint-xl: 1536px; /* ПК */
 }
 
 /* ─────────────── База ─────────────── */
@@ -59,7 +60,6 @@ body {
 
 /* ─────────────── Типографика ─────────────── */
 @layer components {
-
   /* h1 — Benzin Bold */
   .type-h1 {
     font-family: "Benzin", sans-serif;
@@ -70,7 +70,7 @@ body {
   @media (min-width: 768px) {
     .type-h1 { font-size: 32px; line-height: 1.0; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-h1 { font-size: 64px; line-height: 0.95; }
   }
 
@@ -84,7 +84,7 @@ body {
   @media (min-width: 768px) {
     .type-h2 { font-size: 26px; line-height: 1.0; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-h2 { font-size: 56px; line-height: 0.95; }
   }
 
@@ -98,7 +98,7 @@ body {
   @media (min-width: 768px) {
     .type-h3 { font-size: 16px; line-height: 1.2; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-h3 { font-size: 20px; line-height: 1.4; }
   }
 
@@ -112,7 +112,7 @@ body {
   @media (min-width: 768px) {
     .type-text { font-weight: 500; font-size: 14px; line-height: 1.4; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-text { font-size: 16px; line-height: 1.4; }
   }
 
@@ -126,7 +126,7 @@ body {
   @media (min-width: 768px) {
     .type-text-2 { font-size: 18px; line-height: 1.2; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-text-2 { font-size: 22px; line-height: 1.2; }
   }
 
@@ -140,7 +140,7 @@ body {
   @media (min-width: 768px) {
     .type-caption { font-weight: 400; font-size: 10px; line-height: 1.4; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-caption { font-weight: 500; font-size: 12px; line-height: 1.4; }
   }
 
@@ -154,7 +154,7 @@ body {
   @media (min-width: 768px) {
     .type-button { font-size: 12px; line-height: 0.9; }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .type-button { font-size: 16px; line-height: 1.0; }
   }
 }

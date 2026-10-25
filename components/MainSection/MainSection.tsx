@@ -1,17 +1,17 @@
-// components/MainSection/MainSection.tsx
 import Image from "next/image";
 
 export default function MainSection() {
   return (
-    <section className="w-full bg-dark-gray px-[15px] pb-6 pt-2 lg:px-[142px] xl:px-[290px]">
+    <section className="w-full bg-dark-gray px-[15px] pb-6 pt-2 md:px-[30px] xl:px-[50px]">
       <div className="mx-auto flex w-full max-w-[1340px] flex-col gap-3 md:gap-4">
 
+        {/* Баннер */}
         <div className="group relative overflow-hidden rounded-[20px] bg-white p-5 md:p-6 xl:h-[493px] xl:rounded-[55px] xl:px-[40px] xl:pb-[125px] xl:pt-[40px]">
           <Image
             src="/images/main-banner.png"
             alt=""
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1920px) 740px, 1340px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1440px) 1340px, 1340px"
             className="pointer-events-none !left-auto right-0 top-0 hidden !w-auto select-none object-contain object-right md:block"
             priority
           />
@@ -30,13 +30,14 @@ export default function MainSection() {
 
             <a
               href="#forms"
-              className="mt-6 inline-flex w-fit cursor-pointer items-center justify-center rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-white transition-all duration-300 hover:bg-transparent hover:text-blue hover:ring-2 hover:ring-inset hover:ring-blue active:bg-white active:text-black active:ring-0 active:shadow-[0_4px_11px_0_rgba(50,78,234,0.8)] md:px-6 md:py-3 md:text-sm xl:mt-[74px] xl:px-8 xl:py-4 xl:text-base"
+              className="mt-6 inline-flex w-fit cursor-pointer items-center justify-center rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-white transition-all duration-300 hover:scale-105 hover:bg-black md:px-6 md:py-3 md:text-sm xl:mt-[74px] xl:px-8 xl:py-4 xl:text-base"
             >
               Подробнее
             </a>
           </div>
         </div>
 
+        {/* Сетка карточек (Планшет/ПК) */}
         <div className="hidden md:grid md:grid-cols-[427fr_899fr] md:gap-4">
           <div className="flex flex-col gap-4">
             <CouplesCard />
@@ -45,6 +46,7 @@ export default function MainSection() {
           <OnlineWalkCard />
         </div>
 
+        {/* Мобилка */}
         <div className="flex flex-col gap-3 md:hidden">
           <DiscountCard />
           <CouplesCard />
@@ -118,12 +120,12 @@ function DiscountCard() {
 
 function OnlineWalkCard() {
   return (
-    <div className="group relative flex flex-col items-center justify-center gap-10 overflow-hidden rounded-[20px] bg-black p-5 md:gap-12 md:p-8 xl:gap-10 xl:rounded-[55px] xl:py-[77.5px]">
+    <div className="group relative flex flex-col items-center justify-center gap-10 overflow-hidden rounded-[20px] bg-black p-5 transition-all duration-500 md:gap-12 md:p-8 xl:gap-10 xl:rounded-[55px] xl:py-[77.5px]">
       <Image
         src="/images/main-background.png"
         alt=""
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1920px) 740px, 899px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1440px) 899px, 899px"
         className="object-cover object-center"
       />
 
@@ -170,7 +172,7 @@ function StatCircle({
 }) {
   return (
     <div
-      className={`flex flex-col items-center justify-center rounded-full text-center ${
+      className={`flex flex-col items-center justify-center rounded-full text-center transition-transform duration-300 hover:scale-110 ${
         accent
           ? "h-[110px] w-[110px] bg-blue text-white md:h-[150px] md:w-[150px] xl:h-[220px] xl:w-[220px]"
           : "h-[90px] w-[90px] bg-white text-black md:h-[120px] md:w-[120px] xl:h-[150px] xl:w-[150px]"
@@ -193,15 +195,15 @@ function StatCircle({
 function StatsRowMobile() {
   return (
     <div className="flex items-center justify-around pt-4">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
         <span className="font-benzin text-base text-white">&gt;20</span>
         <span className="font-gilroy text-[10px] text-white/60">телескопов</span>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
         <span className="font-benzin text-base text-white">&gt;100</span>
         <span className="font-gilroy text-[10px] text-white/60">программ</span>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
         <span className="font-benzin text-base text-white">&gt;50</span>
         <span className="font-gilroy text-[10px] text-white/60">залов</span>
       </div>

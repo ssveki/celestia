@@ -7,8 +7,6 @@ type IconProps = {
 };
 
 export default function Icon({ name, className = "h-6 w-6" }: IconProps) {
-  // Ищем файлы вида facebook-blue.svg или facebook-white.svg
-  // Для маски подойдет любой из них, так как форма одинаковая
   const iconUrl = `url(/icons/${name}-blue.svg)`; 
 
   const style: CSSProperties = {
@@ -20,7 +18,7 @@ export default function Icon({ name, className = "h-6 w-6" }: IconProps) {
     WebkitMaskRepeat: "no-repeat",
     maskPosition: "center",
     WebkitMaskPosition: "center",
-    backgroundColor: "currentColor", // Берет цвет из класса text-*
+    backgroundColor: "currentColor",
   };
 
   return <div style={style} className={className} aria-hidden="true" />;

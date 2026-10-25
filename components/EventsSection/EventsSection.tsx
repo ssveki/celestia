@@ -1,4 +1,3 @@
-// components/EventsSection/EventsSection.tsx
 import Image from "next/image";
 import EventCard from "@/components/EventCard/EventCard";
 import { events } from "@/lib/data";
@@ -7,10 +6,9 @@ const tabs = ["Программы", "Мероприятия", "Лекции"];
 
 export default function EventsSection() {
   return (
-    <section className="w-full bg-dark-gray px-[15px] py-10 lg:px-[142px] lg:py-16 xl:px-[290px] xl:py-20">
+    <section id="events" className="w-full bg-dark-gray px-[15px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
       <div className="mx-auto w-full max-w-[1340px]">
 
-        {/* Заголовок */}
         <div className="mb-[30px] flex items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[30px]">
           <Image
             src="/icons/star.svg"
@@ -31,7 +29,6 @@ export default function EventsSection() {
           />
         </div>
 
-        {/* Табы */}
         <div className="mb-[30px] flex flex-wrap items-center justify-center gap-[10px] lg:mb-[40px] xl:mb-[60px]">
           {tabs.map((tab, i) => (
             <button
@@ -47,14 +44,12 @@ export default function EventsSection() {
           ))}
         </div>
 
-        {/* Список карточек из data.ts */}
         <div className="flex flex-col gap-[30px]">
           {events.map((e) => (
             <EventCard key={e.slug} event={e} />
           ))}
         </div>
 
-        {/* Кнопка "Показать ещё" */}
         <button className="mt-[30px] h-[52px] w-full cursor-pointer rounded-full bg-white font-benzin text-sm text-black transition-all duration-300 hover:bg-blue hover:text-white active:ring-2 active:ring-white active:ring-offset-2 active:ring-offset-dark-gray md:text-base xl:text-lg">
           Показать ещё
         </button>

@@ -4,9 +4,6 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import Image from "next/image";
 
 /* ──────────── ButtonPrimary ──────────── */
-// "Купить билет", "Показать ещё", "Подробнее" (без обводки)
-// variant: blue (по умолчанию) — синяя / white — белая
-// size: sm / md (по умолчанию) / lg
 
 type PrimaryVariant = "blue" | "white";
 type PrimarySize = "sm" | "md" | "lg";
