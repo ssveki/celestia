@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import EventCard from "@/components/EventCard/EventCard";
 import { events } from "@/lib/data";
@@ -5,39 +8,40 @@ import { events } from "@/lib/data";
 const tabs = ["Программы", "Мероприятия", "Лекции"];
 
 export default function EventsSection() {
-  return (
-    <section id="events" className="w-full bg-dark-gray px-[15px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
-      <div className="mx-auto w-full max-w-[1340px]">
+  const [activeTab, setActiveTab] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [isMounted, setIsMounted] = useState(false);
 
-        <div className="mb-[30px] flex items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[30px]">
-          <Image
-            src="/icons/star.svg"
-            alt=""
-            width={57}
-            height={57}
-            className="h-6 w-6 md:h-9 md:w-9 xl:h-[57px] xl:w-[57px]"
-          />
-          <h2 className="font-benzin text-[24px] font-normal text-white md:text-[40px] xl:text-[57px]">
-            События
-          </h2>
-          <Image
-            src="/icons/star.svg"
-            alt=""
-            width={57}
-            height={57}
-            className="h-6 w-6 md:h-9 md:w-9 xl:h-[57px] xl:w-[57px]"
-          />
+  useEffect(() => {
+    setIsMounted(true);
+    const handleResize = () => { if (window.innerWidth >= 768) setVisibleCount(events.length); };
+    if (window.innerWidth >= 768) setVisibleCount(events.length);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleShowMore = () => { if (visibleCount < events.length) setVisibleCount((prev) => prev + 1); };
+  const displayedEvents = events.slice(0, visibleCount);
+  const hasMore = visibleCount < events.length;
+
+  if (!isMounted) return null;
+
+  return (
+    <section className="w-full bg-dark-gray px-[15px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
+      <div className="mx-auto w-full md:max-w-[740px] xl:max-w-[1340px]">
+        
+        <div className="mb-[30px] flex items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[20px]">
+          <Image src="/icons/star.svg" alt="" width={57} height={57} className="h-5 w-5 md:h-10 md:w-10 xl:h-18 xl:w-18" />
+          <h2 className="font-benzin text-[24px] font-normal text-white md:text-[32px] xl:text-[36px]">События</h2>
+          <Image src="/icons/star.svg" alt="" width={57} height={57} className="h-5 w-5 md:h-10 md:w-10 xl:h-18 xl:w-18" />
         </div>
 
-        <div className="mb-[30px] flex flex-wrap items-center justify-center gap-[10px] lg:mb-[40px] xl:mb-[60px]">
+        <div className="mb-[30px] flex flex-wrap items-center justify-center gap-[10px] lg:mb-[40px]">
           {tabs.map((tab, i) => (
-            <button
-              key={tab}
-              className={`inline-flex h-[40px] cursor-pointer items-center justify-center rounded-full border px-4 font-gilroy text-xs transition-colors duration-300 md:px-6 md:text-sm xl:px-8 xl:text-base ${
-                i === 0
-                  ? "border-blue bg-blue text-white hover:border-white/80 active:border-white active:bg-blue/80"
-                  : "border-white/30 text-white hover:border-white/80 hover:text-white active:border-blue active:bg-blue active:text-white"
-              }`}
+            <button 
+              key={tab} 
+              onClick={() => setActiveTab(i)} 
+              className={`inline-flex h-[36px] cursor-pointer items-center justify-center rounded-full border px-3 font-gilroy text-xs transition-colors duration-300 md:px-10 md:text-sm xl:text-sm ${activeTab === i ? "border-blue bg-blue text-white" : "border-white/30 bg-transparent text-white hover:border-white/80 hover:text-white"}`}
             >
               {tab}
             </button>
@@ -45,15 +49,15 @@ export default function EventsSection() {
         </div>
 
         <div className="flex flex-col gap-[30px]">
-          {events.map((e) => (
-            <EventCard key={e.slug} event={e} />
-          ))}
+          {displayedEvents.map((e) => <EventCard key={e.slug} event={e} />)}
         </div>
-
-        <button className="mt-[30px] h-[52px] w-full cursor-pointer rounded-full bg-white font-benzin text-sm text-black transition-all duration-300 hover:bg-blue hover:text-white active:ring-2 active:ring-white active:ring-offset-2 active:ring-offset-dark-gray md:text-base xl:text-lg">
+        
+        <button 
+          onClick={handleShowMore} 
+          className={`mt-[30px] h-[48px] w-full rounded-full bg-white font-benzin text-sm text-black transition-all duration-300 md:text-base xl:text-base cursor-pointer hover:bg-blue hover:text-white`}
+        >
           Показать ещё
         </button>
-
       </div>
     </section>
   );

@@ -4,173 +4,69 @@ import { EventItem } from "@/lib/data";
 
 export default function EventCard({ event }: { event: EventItem }) {
   return (
-    <article className="group rounded-[28px] p-5 transition-colors duration-500 hover:bg-blue lg:rounded-[40px] xl:rounded-[55px] xl:p-6">
-
-      {/* 1440px+ (xl) */}
-      <div className="hidden xl:grid xl:grid-cols-[313px_minmax(90px,auto)_minmax(650px,1fr)] xl:gap-x-6">
-        <div className="relative self-start">
-          <Image
-            src={event.img}
-            alt={event.title}
-            width={313}
-            height={159}
-            className="h-[159px] w-[313px] rounded-[55px] object-cover"
+    <article className="group py-3 transition-colors duration-500 hover:bg-blue">
+      <div className="flex flex-col gap-4 md:grid md:grid-cols-[280px_1fr] md:gap-x-6 md:gap-y-4 xl:grid-cols-[280px_1fr_1.8fr] xl:gap-x-8">
+        
+        <div className="relative w-full shrink-0 md:col-span-1 xl:row-span-2 xl:self-start">
+          <Image 
+            src={event.img} 
+            alt={event.title} 
+            width={313} 
+            height={159} 
+            className="aspect-[16/9] w-full rounded-[58px] object-cover md:rounded-[58px] xl:h-[160px] xl:w-[280px] xl:rounded-[58px]" 
           />
-          <span className="absolute -right-2 -top-2 z-10 inline-flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white font-gilroy text-[12px] text-black">
-            {event.age}
-          </span>
+          <span className="absolute -right-2 -top-2 z-10 inline-flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white font-gilroy text-[11px] text-black xl:h-[28px] xl:w-[28px] xl:text-xs">{event.age}</span>
         </div>
 
-        <div className="min-w-0 self-start">
-          <p className="font-gilroy text-xs uppercase tracking-wider text-white/60 xl:text-sm">
-            {event.type}
-          </p>
+        <div className="md:col-span-1 xl:row-span-2 xl:self-start xl:pt-1">
+          <p className="font-gilroy text-[10px] uppercase tracking-wider text-white md:text-xs xl:text-xs">{event.type}</p>
           <Link href={`/events/${event.slug}`} className="hover:underline">
-            <h3 className="mt-3 break-words font-benzin text-[32px] leading-[1.1] text-white">
-              {event.title}
-            </h3>
+            <h3 className="mt-2 break-words font-benzin text-xl leading-[1.1] text-white md:text-[24px] xl:mt-3 xl:text-[28px]">{event.title}</h3>
           </Link>
         </div>
 
-        <div className="flex min-w-0 flex-col">
-          <p className="font-gilroy text-base leading-[1.5] text-white">
-            {event.description}
-          </p>
-          <div className="mt-auto flex items-center justify-between pt-6">
-            <div className="flex items-center gap-[40px]">
+        <div className="flex flex-col md:col-span-2 xl:col-span-1 xl:mt-0 xl:h-full xl:justify-between">
+          <p className="font-gilroy text-sm leading-[1.5] text-white xl:text-[15px]">{event.description}</p>
+          
+          <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between xl:mt-6">
+            
+            <div className="flex items-center gap-4 xl:gap-6">
               <Price icon="/icons/user.svg" value={event.priceAdult} />
               <Price icon="/icons/child.svg" value={event.priceChild} />
             </div>
-            <div className="flex items-center gap-[10px]">
+
+            <div className="flex items-center gap-2 xl:gap-3">
               <Link 
                 href={`/events/${event.slug}`} 
-                className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors hover:border-white hover:text-white"
+                className="inline-flex h-[40px] cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors duration-300 hover:border-white hover:text-white xl:h-[44px] xl:px-5 xl:gap-[36px] md:gap-[30px] xl:text-sm"
               >
                 Выбрать дату
                 <Image src="/icons/btn-left-black.svg" alt="" width={12} height={12} className="h-3 w-3 -rotate-90 opacity-70 invert" />
               </Link>
-              <Link href={`/events/${event.slug}`} className="inline-flex h-[40px] items-center justify-center rounded-full bg-blue px-4 font-benzin text-xs text-white transition-colors hover:bg-white hover:text-black">
-                Подробнее
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 768px–1439px (md-lg) */}
-      <div className="hidden md:block xl:hidden">
-        <div className="flex items-start gap-10 lg:gap-20">
-          <div className="relative shrink-0">
-            <Image
-              src={event.img}
-              alt={event.title}
-              width={313}
-              height={159}
-              className="h-[159px] w-[313px] rounded-[40px] object-cover lg:rounded-[55px]"
-            />
-            <span className="absolute -right-2 -top-2 z-10 inline-flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white font-gilroy text-[12px] text-black">
-              {event.age}
-            </span>
-          </div>
-          <div className="min-w-0 pt-2">
-            <p className="font-gilroy text-xs uppercase tracking-wider text-white/60">
-              {event.type}
-            </p>
-            <Link href={`/events/${event.slug}`} className="hover:underline">
-              <h3 className="mt-3 break-words font-benzin text-[28px] leading-[1.1] text-white">
-                {event.title}
-              </h3>
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-[30px]">
-          <p className="font-gilroy text-sm leading-[1.5] text-white">
-            {event.description}
-          </p>
-          <div className="mt-6 flex items-center justify-between">
-            <div className="flex items-center gap-[40px]">
-              <Price icon="/icons/user.svg" value={event.priceAdult} />
-              <Price icon="/icons/child.svg" value={event.priceChild} />
-            </div>
-            <div className="flex items-center gap-[10px]">
               <Link 
                 href={`/events/${event.slug}`} 
-                className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors hover:border-white hover:text-white"
+                className="inline-flex h-[40px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-5 font-benzin text-xs text-white transition-colors duration-300 hover:bg-white hover:text-black xl:h-[44px] xl:px-6 xl:text-sm"
               >
-                Выбрать дату
-                <Image src="/icons/btn-left-black.svg" alt="" width={12} height={12} className="h-3 w-3 -rotate-90 opacity-70 invert" />
-              </Link>
-              <Link href={`/events/${event.slug}`} className="inline-flex h-[40px] items-center justify-center rounded-full bg-blue px-4 font-benzin text-xs text-white transition-colors hover:bg-white hover:text-black">
-                Подробнее
+                Купить билет
               </Link>
             </div>
+
           </div>
         </div>
+
       </div>
-
-      {/* до 768px (base) */}
-      <div className="flex flex-col gap-5 md:hidden">
-        <div className="relative w-full">
-          <Image
-            src={event.img}
-            alt={event.title}
-            width={313}
-            height={159}
-            className="h-[159px] w-full rounded-[24px] object-cover"
-          />
-          <span className="absolute -right-2 -top-2 z-10 inline-flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white font-gilroy text-[12px] text-black">
-            {event.age}
-          </span>
-        </div>
-
-        <div>
-          <p className="font-gilroy text-[10px] uppercase tracking-wider text-white/60">
-            {event.type}
-          </p>
-          <Link href={`/events/${event.slug}`} className="hover:underline">
-            <h3 className="mt-2 break-words font-benzin text-xl leading-[1.1] text-white">
-              {event.title}
-            </h3>
-          </Link>
-        </div>
-
-        <p className="font-gilroy text-sm leading-[1.5] text-white">
-          {event.description}
-        </p>
-
-        <div className="flex items-center gap-[40px]">
-          <Price icon="/icons/user.svg" value={event.priceAdult} />
-          <Price icon="/icons/child.svg" value={event.priceChild} />
-        </div>
-
-        <div className="flex items-center gap-[10px]">
-          <Link 
-            href={`/events/${event.slug}`} 
-            className="inline-flex h-[40px] cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 font-gilroy text-xs text-white/70 transition-colors hover:border-white hover:text-white"
-          >
-            Выбрать дату
-            <Image src="/icons/btn-left-black.svg" alt="" width={12} height={12} className="h-3 w-3 -rotate-90 opacity-70 invert" />
-          </Link>
-          <Link href={`/events/${event.slug}`} className="inline-flex h-[40px] items-center justify-center rounded-full bg-blue px-4 font-benzin text-xs text-white transition-colors hover:bg-white hover:text-black">
-            Подробнее
-          </Link>
-        </div>
-      </div>
-
     </article>
   );
 }
 
 function Price({ icon, value }: { icon: string; value: string }) {
   return (
-    <div className="flex items-center gap-[10px]">
-      <span className="inline-flex h-[25px] w-[25px] shrink-0 items-center justify-center rounded-full bg-white">
-        <Image src={icon} alt="" width={12} height={12} className="h-3 w-3" />
+    <div className="flex items-center gap-[8px] xl:gap-[10px]">
+      {/* Иконки и текст увеличены */}
+      <span className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-white xl:h-[30px] xl:w-[30px]">
+        <Image src={icon} alt="" width={16} height={16} className="h-[14px] w-[14px] xl:h-[16px] xl:w-[16px]" />
       </span>
-      <span className="font-gilroy text-sm text-white xl:text-base">
-        {value} ₽
-      </span>
+      <span className="font-gilroy text-base text-white xl:text-[18px]">{value} ₽</span>
     </div>
   );
 }
