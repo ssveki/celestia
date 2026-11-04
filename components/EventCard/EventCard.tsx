@@ -20,7 +20,7 @@ export default function EventCard({ event }: { event: EventItem }) {
 
         <div className="md:col-span-1 xl:row-span-2 xl:self-start xl:pt-1">
           <p className="font-gilroy text-[10px] uppercase tracking-wider text-white md:text-xs xl:text-xs">{event.type}</p>
-          <Link href={`/events/${event.slug}`} className="hover:underline">
+          <Link href={`/events/${event.slug}`} className="duration-300 hover:opacity-80">
             <h3 className="mt-2 break-words font-benzin text-xl leading-[1.1] text-white md:text-[24px] xl:mt-3 xl:text-[28px]">{event.title}</h3>
           </Link>
         </div>

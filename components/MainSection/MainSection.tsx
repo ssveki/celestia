@@ -9,7 +9,7 @@ export default function MainSection() {
           <div className="relative z-10 flex h-full flex-col">
             <h1 className="font-benzin text-[26px] leading-[1.05] text-black md:text-[36px] xl:text-[40px]">Раскройте тайны звезд<br />с помощью <span className="text-blue">Celestia</span></h1>
             <p className="mt-4 max-w-[520px] font-gilroy text-xs leading-[1.4] text-black/70 md:text-sm xl:mt-4 xl:text-[15px]">Мы проводим специальные мероприятия, такие как ночи наблюдения за звездами, лекции и многое другое</p>
-            <a href="#forms" className="mt-6 inline-flex w-fit cursor-pointer items-center justify-center rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-white transition-all duration-300 hover:bg-white hover:text-blue border-1 hover:border-blue active:border-white active:shadow-md active:shadow-blue md:px-6 md:py-3 md:text-sm xl:mt-[30px] xl:px-16 xl:py-5 xl:text-xl">Подробнее</a>
+            <a href="#forms" className="mt-6 inline-flex w-fit cursor-pointer items-center justify-center rounded-full bg-blue px-5 py-2.5 font-benzin text-xs text-white transition-all duration-300 hover:bg-white hover:text-blue border-1 hover:border-blue active:border-white active:shadow-md active:shadow-blue md:px-6 md:py-3 md:text-sm xl:mt-[30px] xl:px-16 xl:py-4 xl:text-xl">Подробнее</a>
           </div>
         </div>
 

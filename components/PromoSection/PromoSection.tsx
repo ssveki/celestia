@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const promos = [
@@ -10,17 +10,44 @@ const promos = [
 ];
 
 export default function PromoSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  // Для бесконечного слайдера на мобилке
+  const [currentIndex, setCurrentIndex] = useState(promos.length);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const amount = scrollRef.current.clientWidth;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -amount : amount,
-        behavior: "smooth",
-      });
-    }
+  // Создаем 3 копии карточек для эффекта бесконечности
+  const extendedPromos = [...promos, ...promos, ...promos];
+
+  const next = () => {
+    if (isTransitioning) setCurrentIndex((prev) => prev + 1);
   };
+
+  const prev = () => {
+    if (isTransitioning) setCurrentIndex((prev) => prev - 1);
+  };
+
+  // Логика бесконечного переключения
+  useEffect(() => {
+    if (currentIndex >= promos.length * 2) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex((prev) => prev - promos.length);
+      }, 500);
+      return () => clearTimeout(timer);
+    } else if (currentIndex < promos.length) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex((prev) => prev + promos.length);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => setIsTransitioning(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
 
   return (
     <section id="promo" className="w-full bg-dark-gray px-[15px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
@@ -32,29 +59,38 @@ export default function PromoSection() {
         </div>
 
         <div className="relative">
-          {/* Звездочки справа сверху (только на планшете и ПК) */}
+          {/* Звездочки справа сверху */}
           <Image src="/icons/star.svg" alt="" width={40} height={40} className="pointer-events-none absolute z-20 -top-8 right-2 hidden h-4 w-4 md:block xl:-top-20 xl:right-4 xl:h-10 xl:w-10" />
           <Image src="/icons/star.svg" alt="" width={80} height={80} className="pointer-events-none absolute z-20 -top-7 -right-7 hidden h-12 w-12 md:block xl:-top-18 xl:-right-18 xl:h-28 xl:w-28" />
 
-          {/* Мобилка: слайдер. md+: сетка 3 колонки */}
-          <div 
-            ref={scrollRef}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:pb-0 xl:gap-6"
-          >
+          {/* 1. МОБИЛЬНЫЙ СЛАЙДЕР (Бесконечный) */}
+          <div className="w-full overflow-hidden md:hidden">
+            <div 
+              className={`flex ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {extendedPromos.map((p, i) => (
+                <div key={i} className="w-full shrink-0 px-2">
+                  <PromoCard bg={p.bg} title={p.title} description={p.description} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 2. ПЛАНШЕТ И ПК (Обычная сетка) */}
+          <div className="hidden md:grid md:grid-cols-3 md:gap-4 xl:gap-6">
             {promos.map((p, i) => (
-              <div key={i} className="w-full shrink-0 snap-center md:w-auto">
-                <PromoCard bg={p.bg} title={p.title} description={p.description} />
-              </div>
+              <PromoCard key={i} bg={p.bg} title={p.title} description={p.description} />
             ))}
           </div>
         </div>
 
         {/* Кнопки навигации (видны только на мобилке) */}
         <div className="mt-6 flex items-center justify-center gap-3 md:hidden">
-          <button onClick={() => scroll("left")} className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-white">
+          <button onClick={prev} className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-white">
             <Image src="/icons/btn-left-black.svg" alt="" width={20} height={20} className="h-4 w-4" />
           </button>
-          <button onClick={() => scroll("right")} className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-blue">
+          <button onClick={next} className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-blue">
             <Image src="/icons/btn-left-black.svg" alt="" width={20} height={20} className="h-4 w-4 rotate-180 invert" />
           </button>
         </div>
@@ -64,9 +100,10 @@ export default function PromoSection() {
   );
 }
 
+// ТВОЙ КОМПОНЕНТ КАРТОЧКИ (без изменений)
 function PromoCard({ bg, title, description }: { bg: string; title: React.ReactNode; description: string; }) {
   return (
-      <article className="group relative flex w-full flex-col justify-end overflow-hidden rounded-[24px] border-2 border-transparent transition-all duration-500 active:border-white active:shadow-lg active:shadow-blue md:rounded-[28px] md:justify-between md:h-full xl:justify-end xl:rounded-[32px]">
+    <article className="group relative flex w-full flex-col justify-end overflow-hidden rounded-[24px] border-2 border-transparent transition-all duration-500 active:border-white active:shadow-lg active:shadow-blue md:rounded-[28px] md:justify-between md:h-full xl:justify-end xl:rounded-[32px]">
       
       <div className="relative aspect-[426/380] w-full shrink-0 md:aspect-[224/240] xl:aspect-[426/380]">
         <Image 

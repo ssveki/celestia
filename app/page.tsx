@@ -19,3 +19,5 @@ export default function Home() {
     </>
   );
 }
+
+{/* отправлять данные с формы себе на почту через emailJS */}

@@ -2,6 +2,7 @@
 
 import { useState, CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 function Icon({ name, className }: { name: string; className?: string }) {
   const style: CSSProperties = {
@@ -40,23 +41,27 @@ export default function Footer() {
           </div>
           
           <div className="flex items-center gap-3">
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue transition-colors hover:bg-white xl:h-10 xl:w-10">
+            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
               <Icon name="facebook-blue" className="h-4 w-4 text-white transition-colors group-hover:text-blue xl:h-5 xl:w-5" />
             </a>
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue transition-colors hover:bg-white xl:h-10 xl:w-10">
+            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
               <Icon name="inst-blue" className="h-4 w-4 text-white transition-colors group-hover:text-blue xl:h-5 xl:w-5" />
             </a>
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue transition-colors hover:bg-white xl:h-10 xl:w-10">
+            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
               <Icon name="youtube-blue" className="h-4 w-4 text-white transition-colors group-hover:text-blue xl:h-5 xl:w-5" />
             </a>
           </div>
           
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
-              <Icon name="whatsapp" className="h-5 w-5 text-white xl:h-6 xl:w-6" />
-              <Icon name="tg" className="h-5 w-5 text-white xl:h-6 xl:w-6" />
+              <div className="cursor-pointer transition-opacity duration-300 hover:opacity-60">
+                <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={24} height={24} className="h-5 w-5 text-white xl:h-6 xl:w-6" />
+              </div>
+              <div className="cursor-pointer transition-opacity duration-300 hover:opacity-60">
+                <Image src="/icons/tg.svg" alt="Telegram" width={24} height={24} className="h-5 w-5 text-white xl:h-6 xl:w-6" />
+              </div>
             </div>
-            <a href="#" className="font-gilroy text-xs text-white transition-colors hover:text-blue md:text-sm xl:text-base">
+            <a href="#" className="font-gilroy text-xs text-white transition-colors duration-300 hover:text-blue md:text-sm xl:text-base">
               +7 (812) 336 36 36
             </a>
           </div>
@@ -88,7 +93,7 @@ export default function Footer() {
               
               <button 
                 type="submit" 
-                className="h-[44px] w-full shrink-0 cursor-pointer rounded-full bg-blue font-benzin text-xs text-white transition-colors duration-300 hover:bg-white hover:text-black hover:ring-2 hover:ring-inset hover:ring-blue md:w-auto md:px-8 xl:h-[44px] xl:px-8 xl:text-sm"
+                className="h-[44px] w-full shrink-0 cursor-pointer rounded-full bg-blue font-benzin text-xs text-white transition-colors duration-300 hover:bg-white hover:text-black hover:ring-1 md:w-auto md:px-8 xl:h-[44px] xl:px-8 xl:text-sm"
               >
                 Подписаться
               </button>
