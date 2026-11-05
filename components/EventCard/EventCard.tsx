@@ -15,7 +15,7 @@ export default function EventCard({ event }: { event: EventItem }) {
             height={159} 
             className="aspect-[16/9] w-full rounded-[58px] object-cover md:rounded-[58px] xl:h-[160px] xl:w-[280px] xl:rounded-[58px]" 
           />
-          <span className="absolute -right-2 -top-2 z-10 inline-flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white font-gilroy text-[11px] text-black xl:h-[28px] xl:w-[28px] xl:text-xs">{event.age}</span>
+          <span className="absolute right-1 -top-1 z-10 inline-flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white font-gilroy text-[11px] text-black xl:h-[28px] xl:w-[28px] xl:text-xs">{event.age}</span>
         </div>
 
         <div className="md:col-span-1 xl:row-span-2 xl:self-start xl:pt-1">

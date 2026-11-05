@@ -8,7 +8,7 @@ export type EventItem = {
   description: string;
   priceAdult: string;
   priceChild: string;
-  gallery: string[]; // добавим для интерактива на странице деталей
+  gallery: string[];
 };
 
 export const events: EventItem[] = [
@@ -58,7 +58,7 @@ export type ReviewItem =
 export const reviews: ReviewItem[] = [
   {
     kind: "photo",
-    images: ["/images/reviews-1.png", "/images/event-1.png", "/images/FAQ-banner.png"], // Добавил несколько картинок для слайдера
+    images: ["/images/reviews-1.png", "/images/event-1.png", "/images/FAQ-banner.png"],
     avatar: "/images/reviews-person-1.png",
   },
   {

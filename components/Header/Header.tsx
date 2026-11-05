@@ -21,8 +21,8 @@ export default function Header() {
       <div className="mx-auto flex h-[60px] w-full md:max-w-[740px] xl:max-w-[1340px] items-center justify-between md:h-[72px] xl:h-[80px]">
         
         <Link href="/" aria-label="Celestia" className="flex items-center gap-2 transition-opacity duration-300 hover:opacity-60">
-          <Image src="/icons/logo.svg" alt="Celestia" width={56} height={56} className="h-[30px] w-[30px] object-contain md:h-[36px] md:w-[36px] xl:h-[44px] xl:w-[44px]" />
-          <span className="font-benzin text-base text-white md:text-lg xl:text-[22px]">Celestia</span>
+          <Image src="/icons/logo.svg" alt="Celestia" width={56} height={56} className="h-[37px] w-[37px] object-contain" />
+          <span className="font-benzin text-white text-[20px]">Celestia</span>
         </Link>
 
         {/* Навигация появляется только с 1440px (xl) */}

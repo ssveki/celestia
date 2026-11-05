@@ -3,6 +3,7 @@
 import { useState, CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import emailjs from "@emailjs/browser"; // 1. Добавили импорт
 
 function Icon({ name, className }: { name: string; className?: string }) {
   const style: CSSProperties = {
@@ -21,10 +22,35 @@ function Icon({ name, className }: { name: string; className?: string }) {
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  
+  // 2. Добавили состояния для отслеживания отправки
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  // 3. Обновили функцию подписки
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setEmail(""); // Очищаем поле после успешной отправки
+    setIsSending(true);
+    setStatus("idle");
+
+    try {
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_NEWSLETTER!, // Используем новый шаблон для подписки
+        { email: email },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      if (result.status === 200) {
+        setStatus("success");
+        setEmail(""); // Очищаем поле после успешной отправки
+      }
+    } catch (error) {
+      console.error("Ошибка подписки:", error);
+      setStatus("error");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -41,13 +67,13 @@ export default function Footer() {
           </div>
           
           <div className="flex items-center gap-3">
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
+            <a href="#" className="group flex h-8 w-8 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
               <Icon name="facebook-blue" className="h-4 w-4 text-white transition-colors group-hover:text-blue xl:h-5 xl:w-5" />
             </a>
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
+            <a href="#" className="group flex h-8 w-8 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
               <Icon name="inst-blue" className="h-4 w-4 text-white transition-colors group-hover:text-blue xl:h-5 xl:w-5" />
             </a>
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
+            <a href="#" className="group flex h-8 w-8 items-center justify-center rounded-full bg-blue border-0 transition-colors duration-300 hover:bg-white xl:h-10 xl:w-10 active:border-1 active:border-blue active:shadow-md active:shadow-blue">
               <Icon name="youtube-blue" className="h-4 w-4 text-white transition-colors group-hover:text-blue xl:h-5 xl:w-5" />
             </a>
           </div>
@@ -75,7 +101,7 @@ export default function Footer() {
             onSubmit={handleSubscribe} 
             className="flex w-full flex-col items-start gap-4 rounded-[24px] bg-white p-5 md:gap-5 md:rounded-[32px] xl:order-2 xl:w-auto xl:flex-row xl:items-center xl:justify-between xl:gap-8 xl:rounded-[70px] xl:px-10 xl:py-6"
           >
-            {/* Заголовок формы: перенос строки включается только на ПК (xl) */}
+            {/* Заголовок формы */}
             <h3 className="shrink-0 text-left font-benzin text-lg leading-[1.1] text-blue md:text-xl xl:text-[22px]">
               Подписаться <br className="hidden xl:block" /> на рассылку
             </h3>
@@ -88,22 +114,36 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Электронная почта" 
-                className="w-full rounded-full border border-gray-500 px-4 py-3 text-center font-gilroy text-xs text-black placeholder:text-gray-400 focus:border-blue focus:outline-none md:flex-1 md:py-2.5 xl:w-[280px] xl:flex-none xl:text-sm" 
+                disabled={isSending} // Блокируем при отправке
+                className="w-full rounded-full border border-gray-500 px-4 text-center font-gilroy text-sm text-black placeholder:text-gray-400 focus:border-blue focus:outline-none md:flex-1 py-2.5 xl:w-[280px] xl:flex-none disabled:opacity-50" 
               />
               
               <button 
                 type="submit" 
-                className="h-[44px] w-full shrink-0 cursor-pointer rounded-full bg-blue font-benzin text-xs text-white transition-colors duration-300 hover:bg-white hover:text-black hover:ring-1 md:w-auto md:px-8 xl:h-[44px] xl:px-8 xl:text-sm"
+                disabled={isSending} // Блокируем при отправке
+                className="h-[44px] w-full shrink-0 cursor-pointer rounded-full bg-blue font-benzin text-xs text-white transition-colors duration-300 hover:bg-white hover:text-black hover:ring-1 disabled:cursor-not-allowed disabled:opacity-70 md:w-auto md:px-8 xl:h-[44px] xl:px-8 xl:text-sm"
               >
-                Подписаться
+                {isSending ? "Отправка..." : "Подписаться"}
               </button>
             </div>
+
+            {/* 4. Вывод сообщения об успехе или ошибке */}
+            {status === "success" && (
+              <p className="w-full text-center font-gilroy text-[10px] text-green-500 md:text-left md:text-xs">
+                Вы успешно подписались!
+              </p>
+            )}
+            {status === "error" && (
+              <p className="w-full text-center font-gilroy text-[10px] text-red-500 md:text-left md:text-xs">
+                Ошибка. Попробуйте позже.
+              </p>
+            )}
           </form>
 
           {/* 2. Политика */}
           <Link 
             href="#" 
-            className="w-full text-center shrink-0 font-gilroy text-[10px] text-white transition-colors hover:text-white xl:order-1 xl:w-auto xl:text-left md:text-xs xl:text-sm"
+            className="w-full text-center shrink-0 font-gilroy text-sm text-white transition-colors hover:text-white xl:order-1 xl:w-auto xl:text-left"
           >
             Политика конфиденциальности
           </Link>

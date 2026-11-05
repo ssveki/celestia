@@ -50,7 +50,7 @@ export default function PromoSection() {
   }, [isTransitioning]);
 
   return (
-    <section id="promo" className="w-full bg-dark-gray px-[15px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
+    <section id="promo" className="w-full bg-dark-gray px-[7px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
       <div className="mx-auto w-full md:max-w-[740px] xl:max-w-[1340px]">
         
         <div className="mb-6 flex items-center justify-center md:mb-10 xl:mb-14">

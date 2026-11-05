@@ -36,12 +36,12 @@ export default function EventsSection() {
           <Image src="/icons/star.svg" alt="" width={57} height={57} className="h-5 w-5 md:h-10 md:w-10 xl:h-18 xl:w-18" />
         </div>
 
-        <div className="mb-[30px] flex flex-wrap items-center justify-center gap-[10px] lg:mb-[40px]">
+        <div className="mb-[20px] flex flex-wrap items-center justify-center gap-[10px] md:mb-[30px]">
           {tabs.map((tab, i) => (
             <button 
               key={tab} 
               onClick={() => setActiveTab(i)} 
-              className={`inline-flex h-[36px] cursor-pointer items-center justify-center rounded-full border px-3 font-gilroy text-xs transition-colors duration-300 md:px-10 md:text-sm xl:text-sm ${activeTab === i ? "border-blue bg-blue text-white" : "border-white/30 bg-transparent text-white hover:border-white/80 hover:text-white"}`}
+              className={`inline-flex h-[36px] cursor-pointer items-center justify-center rounded-full border px-3 font-gilroy text-xs transition-colors duration-300 md:px-10 md:text-sm md:h-[40px] xl:text-sm xl:h-[42px] ${activeTab === i ? "border-blue bg-blue text-white" : "border-white/30 bg-transparent text-white hover:border-white/80 hover:text-white"}`}
             >
               {tab}
             </button>

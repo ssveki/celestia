@@ -42,7 +42,7 @@ export default function ReviewsSection() {
   }, [isTransitioning]);
 
   return (
-    <section className="w-full bg-dark-gray px-[15px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
+    <section className="w-full bg-dark-gray px-[7px] py-10 md:px-[30px] md:py-16 xl:px-[50px] xl:py-20">
       <div className="mx-auto w-full xl:max-w-[1340px] md:max-w-[740px]">
         <div className="relative mb-8 flex items-center justify-center md:mb-10">
           <h2 className="text-center font-benzin text-[24px] font-normal text-white md:text-[32px] xl:text-[36px]">Отзывы и отметки</h2>
